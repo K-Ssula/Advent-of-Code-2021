@@ -1,0 +1,63 @@
+use std::fs::File;
+use std::io::{self, prelude::*, BufReader};
+
+
+
+pub fn part1() {
+    let file = File::open("src/day01/input.txt").expect("broke");
+    let reader = BufReader::new(file);
+    
+
+    let mut increments: i32 = -1;
+    let mut old: i32 = -1;
+
+
+    for line in reader.lines() {
+        let val = line.expect("fuck me").parse::<i32>().unwrap();
+        if  val > old {
+            increments += 1;            
+        }
+        old = val;
+    }
+    println!("part 1: {}", increments)
+
+    
+}
+
+pub fn part2() {
+    let file = File::open("src/day01/input.txt").expect("broke");
+    let reader = BufReader::new(file);
+    
+
+    let mut increments: i32 = -1;
+    let mut old: i32 = -1;
+    let mut sum: i32 = 0;
+
+    let mut vec = vec![];
+
+    for (index, line) in reader.lines().enumerate() {
+        let val = line.expect("fuck me").parse::<i32>().unwrap();
+
+        vec.push(val);
+    }
+
+    for (index, _val) in vec.iter().enumerate() {
+        if index + 3 > vec.len() {
+            break;
+        }
+
+        for i in index..index + 3 {
+            sum += vec[i];
+
+            // println!("{} {} {} \n\n\n", i, vec[i], sum)
+        }
+
+        if  sum > old {
+            increments += 1;            
+        }
+        old = sum;
+        sum = 0;
+    }
+    println!("part 2: {}", increments)
+    
+}
