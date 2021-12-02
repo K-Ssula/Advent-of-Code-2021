@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io::{self, prelude::*, BufReader};
+use std::io::{prelude::*, BufReader};
 
 
 
@@ -35,7 +35,7 @@ pub fn part2() {
 
     let mut vec = vec![];
 
-    for (index, line) in reader.lines().enumerate() {
+    for line in reader.lines() {
         let val = line.expect("fuck me").parse::<i32>().unwrap();
 
         vec.push(val);
