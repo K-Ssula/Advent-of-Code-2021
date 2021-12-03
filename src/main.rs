@@ -1,7 +1,8 @@
 mod day01;
+mod util;
 
 fn main() {
 
-    day01::part1();
-    day01::part2();    
+    let input = util::input_handler::read_file("day01");
+    day01::execute(input) //p1: 1462 & p2: 1497     
 }
