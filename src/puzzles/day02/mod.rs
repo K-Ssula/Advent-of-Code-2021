@@ -9,11 +9,12 @@ fn part1(input: &Vec<String>) {
 
     for command in input {     
         let token: Vec<&str> = command.split(" ").collect();
+        let value = token[1].parse::<i32>().unwrap();
         
         match token[0] {
-            "forward" => horizontal += token[1].parse::<i32>().unwrap(),
-            "down" => depth += token[1].parse::<i32>().unwrap(),
-            "up" => depth -= token[1].parse::<i32>().unwrap(),
+            "forward" => horizontal += value,
+            "down" => depth += value,
+            "up" => depth -= value,
             _ => println!("{}", "error"),
         }
     }
@@ -27,12 +28,13 @@ fn part2(input: &Vec<String>) {
 
     for command in input {     
         let token: Vec<&str> = command.split(" ").collect();
+        let value = token[1].parse::<i32>().unwrap();
         
         match token[0] {
-            "forward" => {horizontal += token[1].parse::<i32>().unwrap();
-                          depth += aim * token[1].parse::<i32>().unwrap()},
-            "down" => aim += token[1].parse::<i32>().unwrap(),
-            "up" => aim -= token[1].parse::<i32>().unwrap(),
+            "forward" => {horizontal += value;
+                          depth += aim * value},
+            "down" => aim += value,
+            "up" => aim -= value,
             _ => println!("{}", "error"),
         }
     }
