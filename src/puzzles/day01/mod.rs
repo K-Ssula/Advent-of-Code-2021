@@ -37,5 +37,5 @@ fn part2(input: &Vec<String>) {
         old = sum;
         sum = 0;
     }
-    println!("part 2: {}", increments)  
+    println!("part 2: {}\n", increments)  
 }
