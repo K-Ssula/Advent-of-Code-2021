@@ -2,7 +2,7 @@ mod util;
 mod puzzles;
 
 fn main() {
-    // To Do
+    // To Do - refactoring will happen after day 5 is completed
     // add a puzzle selector and input being handled here makes no sense
 
     // let input = util::input_handler::read_file("day01");
