@@ -85,8 +85,6 @@ fn part2(input: &Vec<String>) {
         let treshold = readings_scrubber.len() as f32 / 2.0;
         let val = frequency_of_pos(i, &readings_scrubber) as f32;       
 
-        println!("val: {}     \ttreshold: {}     \tsize: {}", val, treshold, readings_scrubber.len());
-
         // CO2 scrubber rating
         if val >= treshold {
             readings_scrubber.retain(|x| get_val_at(&x, i) == 0);
