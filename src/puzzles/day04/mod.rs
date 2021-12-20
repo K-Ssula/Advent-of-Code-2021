@@ -7,47 +7,38 @@ fn part1(input: &Vec<String>) {
     let drawn_numbers: Vec<&str> = input[0].split(",").collect();
     let mut bingo_cards: Vec<Card> = make_bingo_cards(input);
     let mut winner_card: Card = bingo_cards[0];
-    let mut num = -1;
 
     'outer: for number in drawn_numbers {
         for card in &mut bingo_cards {
             card.mark_if_match(number.parse::<i32>().unwrap());
             if card.check_if_bingo() {
                 winner_card = card.clone();
-                num = number.parse::<i32>().unwrap();
                 break 'outer;
             }
         }
     }
 
-    winner_card.show();
-    println!("\n\n\n\n")
-    // println!("Points {} * {} = {}", winner_card.card_sum, num, winner_card.card_sum * num);
-    
+    println!("part 1: {}", winner_card.get_card_points())  
 }
 
 fn part2(input: &Vec<String>) {
-
-
     let drawn_numbers: Vec<&str> = input[0].split(",").collect();
     let mut bingo_cards: Vec<Card> = make_bingo_cards(input);
     let mut winner_card: Card = bingo_cards[0];
-    let mut num = -1;
-
-
-
 
     for number in drawn_numbers {
         mark(&mut bingo_cards, number.parse::<i32>().unwrap());
         winners(&mut bingo_cards);
+
+        if bingo_cards.len() == 1 && bingo_cards[0].bingo{
+            winner_card = bingo_cards[0];
+            break;
+        }
         
         bingo_cards.retain(|x| still_playing(x));
-
     }
-
-    // winner_card.show();
-    // println!("Points {} * {} = {}", winner_card.card_sum, num, winner_card.card_sum * num);
-    
+    println!("part 2: {}", winner_card.get_card_points())
+        
 }
 
 fn mark(cards: &mut Vec<Card>, num: i32) {
@@ -63,9 +54,6 @@ fn winners(cards: &mut Vec<Card>){
 }
 
 fn still_playing(card: &Card) -> bool {
-    if card.bingo{
-        card.show();
-    }
     return !card.bingo;
 }
 
@@ -177,7 +165,7 @@ impl Card {
         return false;
     }
 
-    fn show(&self) {
+    fn show_card(&self) {
         println!();
         for line in self.card {
             for cell in line {
@@ -188,7 +176,10 @@ impl Card {
                 }
             }
             println!();
-        }
-        println!("Points {} * {} = {}", self.card_sum, self.last_marked, self.card_sum * self.last_marked);
+        }        
+    }
+
+    fn get_card_points(&self) -> i32 {
+        return self.card_sum * self.last_marked;
     }
 }

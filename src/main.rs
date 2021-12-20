@@ -15,10 +15,10 @@ fn main() {
     // puzzles::day02::execute(input) //p1: 1648020 & p2: 1759818555
 
     // let input = util::input_handler::read_file("day03");
-    // puzzles::day03::execute(input) //p1: 4191876  & p2: 3414905
+    // puzzles::day03::execute(input) //p1: 4191876 & p2: 3414905
 
     let input = util::input_handler::read_file("day04");
-    puzzles::day04::execute(input) //p1:  & p2:  
+    puzzles::day04::execute(input) //p1: 71708 & p2: 34726
 
 
 
